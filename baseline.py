@@ -48,8 +48,8 @@ def preprocess_text(text):
 
 # Read all training files and concatenate them into one dataframe
 li = []
-for filename in os.listdir("train_tweets"):
-    df = pd.read_csv("train_tweets/" + filename)
+for filename in os.listdir("sub_train_tweets"):
+    df = pd.read_csv("sub_train_tweets/" + filename)
     li.append(df)
 df = pd.concat(li, ignore_index=True)
 
@@ -69,9 +69,13 @@ period_features = period_features.drop(columns=['Timestamp', 'Tweet'])
 period_features = period_features.groupby(['MatchID', 'PeriodID', 'ID']).mean().reset_index()
 
 # We drop the non-numerical features and keep the embeddings values for each period
-X = period_features.drop(columns=['EventType', 'MatchID', 'PeriodID', 'ID']).values
+X = period_features.drop(columns=['EventType', 'MatchID', 'PeriodID', 'ID'])
+"""
+ATTENTION: j'ai enlevé le .values qui les transformait en ndarray (vs dataframe), les ndarray prennent moins d'espace mémoire
+"""
+X.to_csv("test")
 # We extract the labels of our training samples
-y = period_features['EventType'].values
+y = period_features['EventType']
 
 ###### Evaluating on a test set:
 
