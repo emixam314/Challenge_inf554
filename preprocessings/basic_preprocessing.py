@@ -41,7 +41,7 @@ def basic_preprocessig(folder):
     period_features = period_features.drop(columns=['Timestamp', 'Tweet'])
     period_features = period_features.groupby(['MatchID', 'PeriodID', 'ID']).mean().reset_index()
 
-    return 
+    return period_features
 
 
 

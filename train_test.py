@@ -3,7 +3,19 @@ from sklearn.metrics import accuracy_score
 import os
 import pandas as pd
 
+"""
+Ci dessous, le bout à set up pour tester un nouveau model ou preprocessing!
+"""
 
+from models.logistic_regression import logistic_regression
+from preprocessings.basic_preprocessing import basic_preprocessig
+
+model = logistic_regression
+model_name = "logistic_regression"
+train_period_features = basic_preprocessig("train_tweets")
+eval_period_features = basic_preprocessig("eval_tweets")
+
+""""""
 
 def train_test(model,model_name,train_period_features, eval_period_features):
 
@@ -34,4 +46,5 @@ def train_test(model,model_name,train_period_features, eval_period_features):
     pred_df = pd.concat(predictions)
     pred_df.to_csv('data/eval_tweets/outputs/'+model_name+'.csv', index=False)
 
-    
+
+train_test(model,model_name,train_period_features, eval_period_features)
