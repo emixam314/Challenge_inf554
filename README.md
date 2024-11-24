@@ -56,10 +56,26 @@ vocabulaires et notions:
 
 preprocessings codés:
 
-    1) baseline:
+    1) basic:
+    =issu de baseline
         - pour chaque tweet du dataframe: Lowercasing, Remove punctuation, Tokenization, Remove stopwords, Lemmatization
         - calculer le vecteur moyen en glove: pour chaque mot dans le tweet le convertir en vecteur glove puis calculer un vecteur moyen pour l'ensemble du tweet
         - refaire la moyenne ensuite sur la minute avec un group by match et period ID
 
+    2) basic +:
+        - la même chose mais on rajoute des colonnes pour compter le nombre de majuscules et de ! (moyenner sur le nombre de mot par tweet et par periode)
+
 
 modèles codés: 
+
+    1) logistic_regression issu de baseline
+        sub_train_test / basic_and_additionnal_preprocessing: accuracy = 0.667 (varie de 0.02)
+    2) un neural network avec pytorch complètement au hasard
+        sub_train_test / basic_and_additionnal_preprocessing: accuracy = 0.62 (varie de 0.02)
+
+partie technique:
+
+    -si tu veux adapter le linter: Ctrl Shift P, select interpreter et prendre celui qui correspond à là où tu as pip install les packages
+    -problèmes d'imports de fonction
+        REGLE: on execute des fonctions uniquement à la racine du projet! (les chemins des imports de fichiers pour construire d'autres fonctions sont tous designés pour)
+        exemple: from models._Model import Model est une lignes ds tous les fichiers de models. => l'import renvoie une erreur si l'interpréteur n'est pas lancé depuis la racine
