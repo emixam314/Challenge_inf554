@@ -1,7 +1,7 @@
 from sklearn.linear_model import LogisticRegression
 from models._Model import Model
 
-class logistic_regression(Model):
+class LogisticRegression(Model):
 
     def __init__(self):
         self.name = "logistic_regression"
