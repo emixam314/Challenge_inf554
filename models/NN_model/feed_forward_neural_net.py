@@ -5,8 +5,8 @@ from .NN_Model import NNModel
 
 class FeedforwardNeuralNetModel(NNModel):
     def __init__(self, input_dim, hidden_dim, output_dim):
-        super().__init__()
         self.name = "FeedforwardNeuralNetModel"
+        super().__init__()
         self.input_dim = input_dim
         # Linear function
         self.fc1 = nn.Linear(input_dim, hidden_dim) 

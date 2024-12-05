@@ -1,3 +1,4 @@
 *.csv
 test.ipynb
 tests.ipynb
+*__pycache__*
