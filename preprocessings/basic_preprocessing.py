@@ -7,7 +7,7 @@ from nltk.stem import WordNetLemmatizer
 
 
 
-def basic_preprocessig(folder,embeddings_model):
+def basic_preprocessing(folder,embeddings_model):
 
     # Read all training files and concatenate them into one dataframe
     print("concating csv...")
