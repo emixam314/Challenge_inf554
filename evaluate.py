@@ -14,6 +14,11 @@ def evaluate(y_true, y_pred):
     print(f"Precision: {precision_score(y_true, y_pred)}")
     print(f"Recall: {recall_score(y_true, y_pred)}")
     print(f"Confusion matrix: \n{confusion_matrix(y_true, y_pred)}")
+    """
+    Confusion matrix: 
+        [[TN, FP],
+        [FN, TP]]
+    """
     print(f"Classification report: \n{classification_report(y_true, y_pred)}")
     
     return accuracy_score(y_true, y_pred), f1_score(y_true, y_pred), precision_score(y_true, y_pred), recall_score(y_true, y_pred)

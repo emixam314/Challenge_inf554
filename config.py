@@ -6,18 +6,18 @@ from models import FeedforwardNeuralNetModel, LogisticRegression
 
 config = {
     # General Settings
-    'model_type': 'dl',  # Choose between 'ml' or 'dl'
+    'model_type': 'ml',  # Choose between 'ml' or 'dl'
 
     # Data Paths
     'data_paths': {
-        'processed': 'base_processing/',
-        'embedded': 'base_embedding/',
-        'predictions': 'base_predictions',
+        'processed': 'no_processing/',
+        'embedded': 'very_simple_embedding/',
+        'predictions': 'very_simple_predictions',
     },
 
     # Preprocessing Settings (note used for now)
-    'preprocess': True,
-    'preprocessing_type': 'base_preprocessing',
+    'preprocess': False,
+    'preprocessing_type': 'no_preprocessing',
     'preprocessing': {
         'lowercase': True,
         'remove_stopwords': True,
@@ -28,7 +28,7 @@ config = {
 
     # Feature Extraction (not used for now)
     'embeddings': True,
-    'embedding_type': 'base_embedding',
+    'embedding_type': 'very_simple_embedding',
     'features': {
         'method': 'word2vec()',  # Options: 'tfidf', 'count_vectorizer', 'word2vec'
     },
@@ -63,8 +63,6 @@ config = {
 
     # Training Settings
     'training': {
-        'batch_size': 32,
-        'epochs': 10,
-        'shuffle': True,
+        
     },
 }
