@@ -3,7 +3,7 @@
 
 idées:
     - il y deux manières d'influer sur le score: 
-            - le preprocessing
+            - le preprocessing + embedding
                 => c'est pas sur que ce soit une bonne chose d'enlever les majuscules ou la ponctuation: on pourrait faire une colonne qui compte les "!" ou les majuscules, elles seraient assez représentatives d'un évènement majeur dans le match
 
                 => D'abord on s'entraine que sur une petite partie du dataset total: j'ai créé un sub_train_tweets
@@ -24,6 +24,8 @@ questions:
 vocabulaires et notions:
 
     - NLP: traitement du langage naturel
+
+    - LLM: large language model
 
     - GloVe: technique d'embedding (=représentation vectorielle), on part d'une matrice de co-ocurrence (matrice d'adjacence d'un graphe ou un mot est un noeud et le poids de chaque connexion entre les noeuds est le nombre de fois que les mots apparaissent à côté, dans la même phrase), le but est ensuite de factoriser cette matrice pour exprimer chaque mot dans une base de dimension plus petite (beaucoup plus petite que la taille du vocabulaire). 
         => script:

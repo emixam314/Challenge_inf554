@@ -27,7 +27,7 @@ config = {
     },
 
     # Feature Extraction (not used for now)
-    'embeddings': True,
+    'embeddings': False,
     'embedding_type': 'base_embedding',
     'features': {
         'method': 'word2vec()',  # Options: 'tfidf', 'count_vectorizer', 'word2vec'
@@ -64,7 +64,7 @@ config = {
     # Training Settings
     'training': {
         'batch_size':32,
-        'epochs': 10,
+        'epochs': 100,
         'shuffle':True,
     },
 }

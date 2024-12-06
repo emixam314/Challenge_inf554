@@ -117,4 +117,6 @@ class DL_model(Model):
         plt.plot(history_val_loss, label='Validation')
         plt.title('Loss Graph')
         plt.legend()
-        plt.show()
+        
+        plt.savefig("plot_losses", dpi=300)  # Save with a high resolution
+        plt.close()
