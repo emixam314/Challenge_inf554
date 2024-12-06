@@ -21,7 +21,7 @@ def main():
         embedd_data(config['embedding_type'], 'eval_tweets', config['data_paths']['processed'], config['data_paths']['embedded'])
         print(f"Data embedded and saved in {config['data_paths']}")
      
-    print(f"Loading data from {config['data_paths']['processed']}...")
+    print(f"Loading data from {config['data_paths']['embedded']}...")
     X, y = load_embedded_data(config['data_paths']['embedded'], 'train_tweets')
     X_valid = load_embedded_data(config['data_paths']['embedded'], 'eval_tweets')
 

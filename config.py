@@ -17,7 +17,8 @@ config = {
 
     # Preprocessing Settings (note used for now)
     'preprocess': False,
-    'preprocessing_type': 'no_preprocessing',
+    'preprocessing_type': 'base_preprocessing',
+
     'preprocessing': {
         'lowercase': True,
         'remove_stopwords': True,
@@ -27,8 +28,10 @@ config = {
     },
 
     # Feature Extraction (not used for now)
-    'embeddings': False,
-    'embedding_type': 'base_embedding',
+    'embeddings': True,
+    'embedding_type': 'SBERT_embedding',
+
+
     'features': {
         'method': 'word2vec()',  # Options: 'tfidf', 'count_vectorizer', 'word2vec'
     },

@@ -5,7 +5,6 @@ class LogisticRegression(Model):
     def __init__(self, **model_params):
         """
         Initialise le modèle avec les paramètres donnés.
-
         Args:
             model_params (dict): Dictionnaire de paramètres pour le modèle scikit-learn.
         """
