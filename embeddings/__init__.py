@@ -2,6 +2,7 @@ import pandas as pd
 import gensim.downloader as api
 from .base_embedding import basic_embedding
 from.very_simple_embedding import very_simple_embedding
+from .base_and_very_simple_embedding import base_and_very_simple_embedding
 
 def embedd_data(embedding_type, raw_folder, processed_folder, embedded_folder):
     if embedding_type == 'base_embedding':
@@ -10,6 +11,9 @@ def embedd_data(embedding_type, raw_folder, processed_folder, embedded_folder):
 
     elif embedding_type == 'very_simple_embedding':
         very_simple_embedding(raw_folder, processed_folder, embedded_folder)
+
+    elif embedding_type == 'base_and_very_simple_embedding':
+        base_and_very_simple_embedding(raw_folder, processed_folder, embedded_folder)
         
     else:
         raise ValueError(f"Embedding method '{embedding_type}' not implemented.")

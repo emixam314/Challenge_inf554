@@ -12,7 +12,7 @@ class LogisticRegression(Model):
         self.name = "logistic_regression"
         self.model = SklearnLogisticRegression(**model_params)
 
-    def fit(self, X_train, y_train):
+    def fit(self, X_train, y_train,X_test=None, y_test=None):
         """
         Entraîne le modèle sur les données d'entraînement.
         """

@@ -10,9 +10,9 @@ config = {
 
     # Data Paths
     'data_paths': {
-        'processed': 'base_processing',
-        'embedded': 'base_embedding',
-        'predictions': 'base_predictions',
+        'processed': 'no_processing',
+        'embedded': 'base_and_very_simple_embedding',
+        'predictions': 'base_and_very_simple_predictions',
     },
 
     # Preprocessing Settings (note used for now)
@@ -27,8 +27,8 @@ config = {
     },
 
     # Feature Extraction (not used for now)
-    'embeddings': False,
-    'embedding_type': 'base_embedding',
+    'embeddings': True,
+    'embedding_type': 'base_and_very_simple_embedding',
     'features': {
         'method': 'word2vec()',  # Options: 'tfidf', 'count_vectorizer', 'word2vec'
     },
@@ -37,7 +37,7 @@ config = {
     'dl': {
         'model': FeedforwardNeuralNetModel,  # Replace with your actual PyTorch model class
         'model_params': {
-            'input_dim': 200,  # Example: input size for embeddings
+            'input_dim': 204,  # Example: input size for embeddings
             'hidden_dim': 128,  # Example: hidden layer size
             'output_dim': 1,  # Number of classes
         },
@@ -63,8 +63,8 @@ config = {
 
     # Training Settings
     'training': {
+        'epochs':100,
         'batch_size':32,
-        'epochs': 100,
         'shuffle':True,
     },
 }
