@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch.optim as optim
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-from models import FeedforwardNeuralNetModel, LogisticRegression 
+from models import FeedforwardNeuralNetModel, LogisticRegression, FeedforwardNeuralNetModelWithDropout, CNNModel
 
 config = {
     # General Settings
@@ -12,7 +12,7 @@ config = {
     'data_paths': {
         'processed': 'base_processing',
         'embedded': 'base_embedding',
-        'predictions': 'base_predictions',
+        'predictions': 'base_predictions_CNN',
     },
 
     # Preprocessing Settings (note used for now)
@@ -28,7 +28,7 @@ config = {
     },
 
     # Feature Extraction (not used for now)
-    'embeddings': True,
+    'embeddings': False,
     'embedding_type': 'SBERT_embedding',
 
 
@@ -38,11 +38,10 @@ config = {
 
     # Deep Learning Model Configurations
     'dl': {
-        'model': FeedforwardNeuralNetModel,  # Replace with your actual PyTorch model class
+        'model': CNNModel,  # Replace with your actual PyTorch model class
         'model_params': {
             'input_dim': 200,  # Example: input size for embeddings
-            'hidden_dim': 128,  # Example: hidden layer size
-            'output_dim': 1,  # Number of classes
+            'num_classes': 1,  # Number of classes
         },
         'criterion': nn.BCELoss,
         'criterion_params': {},  # Add any specific parameters for the criterion
