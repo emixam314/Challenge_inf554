@@ -4,4 +4,5 @@ gensim==4.3.3
 nltk
 torch
 matplotlib
+lightgbm
 -U sentence-transformers

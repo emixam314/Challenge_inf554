@@ -2,17 +2,17 @@ import torch.nn as nn
 import torch.optim as optim
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-from models import FeedforwardNeuralNetModel, LogisticRegression, FeedforwardNeuralNetModelWithDropout, CNNModel
+from models import FeedforwardNeuralNetModel, LogisticRegression, FeedforwardNeuralNetModelWithDropout, CNNModel, LightGBMClassifier
 
 config = {
     # General Settings
-    'model_type': 'dl',  # Choose between 'ml' or 'dl'
+    'model_type': 'ml',  # Choose between 'ml' or 'dl'
 
     # Data Paths
     'data_paths': {
         'processed': 'base_processing',
-        'embedded': 'base_embedding',
-        'predictions': 'base_predictions_CNN',
+        'embedded': 'GLOVE_embedding',
+        'predictions': 'test',
     },
 
     # Preprocessing Settings (note used for now)
@@ -28,8 +28,8 @@ config = {
     },
 
     # Feature Extraction (not used for now)
-    'embeddings': False,
-    'embedding_type': 'SBERT_embedding',
+    'embeddings': True,
+    'embedding_type': 'GLOVE',  # Options: 'base_embedding', 'very_simple_embedding', 'SBERT', 'GLOVE'
 
 
     'features': {
@@ -54,19 +54,17 @@ config = {
 
     # Machine Learning Model Configurations
     'ml': {
-        'model' : LogisticRegression,  # Replace with your actual scikit-learn model class
+        'model' : LightGBMClassifier,  # Replace with your actual scikit-learn model class
         'model_params': {
-            'penalty': 'l2',
-            'C': 1.0,
-            'solver': 'liblinear',
         },
         
     },
 
     # Training Settings
     'training': {
-        'batch_size':32,
-        'epochs': 100,
-        'shuffle':True,
     },
+       #'batch_size':32,
+        #'epochs': 100,
+       # 'shuffle':True,
+    
 }
