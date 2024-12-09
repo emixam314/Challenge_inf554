@@ -10,14 +10,14 @@ config = {
 
     # Data Paths
     'data_paths': {
-        'processed': 'base_preprocessing',
+        'processed': 'base_better_preprocessing',
         'embedded': 'BERTweet',
         'predictions': 'base_predictions',
     },
 
     # Preprocessing Settings (note used for now)
     'preprocess': True,
-    'preprocessing_type': 'base_preprocessing',
+    'preprocessing_type': 'base_better_preprocessing',
 
     'preprocessing': {
         'lowercase': True,
