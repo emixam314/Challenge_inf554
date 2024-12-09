@@ -1,9 +1,11 @@
 import os
 import re
+import numpy as np
 import pandas as pd
-from nltk.corpus import stopwords
+from nltk.corpus import stopwords, wordnet
 from nltk.stem import WordNetLemmatizer
 import nltk
+
 
 def ensure_nltk_resources():
     try:
