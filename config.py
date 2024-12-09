@@ -10,14 +10,14 @@ config = {
 
     # Data Paths
     'data_paths': {
-        'processed': 'base_processing',
-        'embedded': 'base_embedding',
+        'processed': 'preprocessing_spec',
+        'embedded': 'FastText',
         'predictions': 'base_predictions',
     },
 
     # Preprocessing Settings (note used for now)
-    'preprocess': False,
-    'preprocessing_type': 'base_preprocessing',
+    'preprocess': True,
+    'preprocessing_type': 'preprocessing_spec',
 
     'preprocessing': {
         'lowercase': True,
@@ -29,7 +29,7 @@ config = {
 
     # Feature Extraction (not used for now)
     'embeddings': True,
-    'embedding_type': 'SBERT_embedding',
+    'embedding_type': 'FastText',
 
 
     'features': {
