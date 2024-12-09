@@ -2,11 +2,11 @@ import torch.nn as nn
 import torch.optim as optim
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-from models import FeedforwardNeuralNetModel, LogisticRegression, FeedforwardNeuralNetModelWithDropout, CNNModel, LightGBMClassifier
+from models import FeedforwardNeuralNetModel, LogisticRegression, FeedforwardNeuralNetModelWithDropout, CNNModel, LightGBMClassifier, AttentionModel
 
 config = {
     # General Settings
-    'model_type': 'ml',  # Choose between 'ml' or 'dl'
+    'model_type': 'dl',  # Choose between 'ml' or 'dl'
 
     # Data Paths
     'data_paths': {
@@ -28,7 +28,7 @@ config = {
     },
 
     # Feature Extraction (not used for now)
-    'embeddings': True,
+    'embeddings': False,
     'embedding_type': 'GLOVE',  # Options: 'base_embedding', 'very_simple_embedding', 'SBERT', 'GLOVE'
 
 
@@ -38,9 +38,10 @@ config = {
 
     # Deep Learning Model Configurations
     'dl': {
-        'model': CNNModel,  # Replace with your actual PyTorch model class
+        'model': AttentionModel,  # Replace with your actual PyTorch model class
         'model_params': {
-            'input_dim': 200,  # Example: input size for embeddings
+            'embedding_dim': 200,  # Example: input size for embeddings
+            'hidden_dim': 128,  # Example: hidden size for LSTM
             'num_classes': 1,  # Number of classes
         },
         'criterion': nn.BCELoss,
@@ -62,9 +63,8 @@ config = {
 
     # Training Settings
     'training': {
+        'batch_size':50,
+        'epochs': 10,
+        'shuffle':False,
     },
-       #'batch_size':32,
-        #'epochs': 100,
-       # 'shuffle':True,
-    
 }
