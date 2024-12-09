@@ -62,9 +62,12 @@ def preprocess_text(text):
     # Enlever les liens
     text = re.sub(r'http\S+|www\S+', '', text)
 
-    # Remove 'RT' (retweet indicator) and mentions (i.e., @username)
-    text = re.sub(r'\bRT\b', '', text)  # Remove "RT" (Retweet indicator)
-    text = re.sub(r'@\w+:?', '', text)  # Enlève @mention et le ":" suivant si présent
+    # Supprime les retweets (RT au début ou précédant un tag)
+    text = re.sub(r'\brt\b\s*@\w+:?', '', text, flags=re.IGNORECASE)
+
+    # Supprime les tags (@username)
+    text = re.sub(r'@\w+', '', text)
+
 
     # Enlever les caractères qui ne sont pas des mots, espaces, ou ponctuation (garde les chiffres)
     #text = re.sub(r'[^\w\s.,!?\'";:()&-]', '', text)
