@@ -5,7 +5,7 @@ from .base_embedding import basic_embedding
 from.very_simple_embedding import very_simple_embedding
 from .SBERT import SBERT_embedding
 import torch
-from config import FASTTEXT_MODEL_PATH
+from .BERTweet import BERTweet_embedding
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -19,9 +19,8 @@ def embedd_data(embedding_type, raw_folder, processed_folder, embedded_folder):
     elif embedding_type == 'SBERT_embedding':
         embeddings_model = SentenceTransformer('all-MiniLM-L6-v2')
         SBERT_embedding(raw_folder, processed_folder, embedded_folder, embeddings_model)
-    elif embedding_type == 'FastText':
-        fasttext_model_path = "cc.multi.300.bin"  
-        FastText_embedding(raw_folder, processed_folder, embedded_folder, FASTTEXT_MODEL_PATH)
+    elif embedding_type == 'BERTweet_embedding': 
+        BERTweet_embedding(raw_folder, processed_folder, embedded_folder)
     else:
         raise ValueError(f"Embedding method '{embedding_type}' not implemented.")
     
