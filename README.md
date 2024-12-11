@@ -55,6 +55,8 @@ vocabulaires et notions:
         constant :
         Prédit toujours une classe fixe définie par l'utilisateur.
 
+    - LSTM: long short term memory, c'est un réseau de neurones plus poussé que le recurrent neural network. Le concept reste le même, prédire non pas sur l'input à t mais sur l'état caché à t: un vecteur de même dimension calculé à partir de l'input à t et de l'état caché à t-1. Dans le cas du LSTM, il y a deux états cachés: long term memory et short term memory. On prédit sur le short term memory calculé à partir de l'input à t et des deux vecteur de memory à t-1.
+
 
 preprocessings codés:
 
