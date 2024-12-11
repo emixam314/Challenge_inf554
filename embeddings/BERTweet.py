@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import os
 from tqdm import tqdm
+import torch
 
 # Initialiser la barre de progression
 tqdm.pandas()

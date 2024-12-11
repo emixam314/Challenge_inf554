@@ -11,12 +11,12 @@ config = {
     # Data Paths
     'data_paths': {
         'processed': 'base_better_preprocessing',
-        'embedded': 'BERTweet',
+        'embedded': 'BERTweet2',
         'predictions': 'base_predictions',
     },
 
     # Preprocessing Settings (note used for now)
-    'preprocess': True,
+    'preprocess': False,
     'preprocessing_type': 'base_better_preprocessing',
 
     'preprocessing': {
@@ -28,8 +28,8 @@ config = {
     },
 
     # Feature Extraction (not used for now)
-    'embeddings': False,
-    'embedding_type': 'FastText',
+    'embeddings': True,
+    'embedding_type': 'BERTweet2',
 
 
     'features': {
