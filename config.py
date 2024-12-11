@@ -19,22 +19,11 @@ config = {
     'preprocess': False,
     'preprocessing_type': 'base_better_preprocessing',
 
-    'preprocessing': {
-        'lowercase': True,
-        'remove_stopwords': True,
-        'lemmatize': True,
-        'tokenize': True,
-        'max_features': 10000,  # Vocabulary size for vectorizers
-    },
-
+   
     # Feature Extraction (not used for now)
     'embeddings': True,
     'embedding_type': 'BERTweet2',
 
-
-    'features': {
-        'method': 'word2vec()',  # Options: 'tfidf', 'count_vectorizer', 'word2vec'
-    },
 
     # Deep Learning Model Configurations
     'dl': {
