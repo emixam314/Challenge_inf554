@@ -16,6 +16,14 @@ def very_simple_embedding(raw_folder, processed_folder, embedded_folder):
     df = df.drop(columns=['Timestamp', 'Tweet'])
     df = df.groupby(['MatchID', 'PeriodID', 'ID']).mean().reset_index()
 
+    ls = ["count_capital_letter","count_exclamation","count_tweet_lenght","count_tweet_per_period"]
+    for col in ls:
+        moy = df[col].mean()
+        std = np.sqrt(df[col].var())
+        df[col] = (df[col] - moy)/std
+    
+
+
     file_path = f"data/embedded_data/{embedded_folder}/{raw_folder}.csv"
     if not os.path.exists(f"data/embedded_data/{embedded_folder}"):
         os.makedirs(f"data/embedded_data/{embedded_folder}")

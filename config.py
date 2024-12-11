@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch.optim as optim
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-from models import FeedforwardNeuralNetModel, LogisticRegression 
+from models import FeedforwardNeuralNetModel, LogisticRegression, lstm
 
 config = {
     # General Settings
@@ -10,7 +10,7 @@ config = {
 
     # Data Paths
     'data_paths': {
-        'processed': 'no_processing',
+        'processed': 'base_processing',
         'embedded': 'base_and_very_simple_embedding',
         'predictions': 'base_and_very_simple_predictions',
     },
@@ -27,7 +27,7 @@ config = {
     },
 
     # Feature Extraction (not used for now)
-    'embeddings': True,
+    'embeddings': False,
     'embedding_type': 'base_and_very_simple_embedding',
     'features': {
         'method': 'word2vec()',  # Options: 'tfidf', 'count_vectorizer', 'word2vec'
@@ -35,7 +35,7 @@ config = {
 
     # Deep Learning Model Configurations
     'dl': {
-        'model': FeedforwardNeuralNetModel,  # Replace with your actual PyTorch model class
+        'model': lstm,  # Replace with your actual PyTorch model class
         'model_params': {
             'input_dim': 204,  # Example: input size for embeddings
             'hidden_dim': 128,  # Example: hidden layer size
@@ -63,7 +63,7 @@ config = {
 
     # Training Settings
     'training': {
-        'epochs':100,
+        'epochs':20,
         'batch_size':32,
         'shuffle':True,
     },

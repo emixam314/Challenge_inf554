@@ -85,7 +85,7 @@ class DL_model(Model):
                         correct += (predicted.type(torch.FloatTensor).cpu() == labels.type(torch.FloatTensor)).sum().item()
                         # correct = (predicted == labels.byte()).int().sum().item()
 
-                    accuracy = 100. * correct / total
+                    accuracy = correct / total
 
                     history_val_loss.append(val_loss.data.item())
                     history_val_acc.append(round(accuracy, 2))
@@ -116,6 +116,21 @@ class DL_model(Model):
         plt.plot(history_train_loss, label='Train')
         plt.plot(history_val_loss, label='Validation')
         plt.title('Loss Graph')
+        plt.legend()
+        
+        plt.savefig("plot_losses", dpi=300)  # Save with a high resolution
+        plt.close()
+
+    def plot_accuracy(self,history_val_acc):
+        # Set plotting style
+        #plt.style.use(('dark_background', 'bmh'))
+        plt.style.use('bmh')
+        plt.rc('axes', facecolor='none')
+        plt.rc('figure', figsize=(16, 4))
+
+        # Plotting loss graph
+        plt.plot(history_val_acc, label='history_val_acc')
+        plt.title('Accuracy Graph')
         plt.legend()
         
         plt.savefig("plot_losses", dpi=300)  # Save with a high resolution

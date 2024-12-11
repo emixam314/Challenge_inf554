@@ -2,7 +2,7 @@ import torch
 import os
 from preprocessings import preprocess_data, load_preprocessed_data
 from embeddings import embedd_data, load_embedded_data
-from models import DL_model, LogisticRegression, FeedforwardNeuralNetModel
+from models import DL_model, LogisticRegression
 from config import config
 from sklearn.model_selection import train_test_split
 from evaluate import evaluate
