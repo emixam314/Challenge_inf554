@@ -57,6 +57,27 @@ vocabulaires et notions:
 
     - LSTM: long short term memory, c'est un réseau de neurones plus poussé que le recurrent neural network. Le concept reste le même, prédire non pas sur l'input à t mais sur l'état caché à t: un vecteur de même dimension calculé à partir de l'input à t et de l'état caché à t-1. Dans le cas du LSTM, il y a deux états cachés: long term memory et short term memory. On prédit sur le short term memory calculé à partir de l'input à t et des deux vecteur de memory à t-1.
 
+    - BERT: bidirectionnal encoder representations form transformers (Google 2018)
+        -> BERT analyse un mot en tenant compte des mots qui le précèdent et de ceux qui le suivent, ce qui améliore sa compréhension du contexte.
+        -> BERT est pré-entraîné sur de grandes quantités de données textuelles => on prend un modèle préentraîné pour tweeter. Deux tâches utilisées pour cela:
+            - Masked Language Model (MLM) : Une partie des mots d'une phrase est masquée, et le modèle doit prédire ces mots en se basant sur le contexte.
+            - Next Sentence Prediction (NSP) : Le modèle doit déterminer si une phrase suit logiquement une autre dans un texte.
+
+        -> Une fois pré-entraîné, BERT peut être ajusté sur des tâches spécifiques (comme la classification de texte, la reconnaissance d'entités nommées, ou les systèmes de questions-réponses) avec des données de tâche relativement limitées
+
+        BERT fait du word embedding.
+
+        le vecteur comporte des centaines de poids qui résument: les propriétés sémantiques du mot (sens du mot), ses propriétés syntaxiques (rôle grammatical, relation syntaxique entre les mots) et ses propriétés de contexte (le contexte spécifique).
+
+        NB: Le token spécial [CLS] (en tête de la phrase) contient l'information globale de la phrase après que le modèle ait traité le texte. L'embedding de ce token est souvent utilisé comme représentation de la phrase entière dans des tâches comme la classification ou la similarité.
+
+        ATTENTION: il y a un nombre maximal de mots pour BERT (500) la fin est tronquée
+
+
+    - SBERT: BERT mais il fait du texte embedding et non pas du word embedding.
+        -> SBERT s'appuie sur un modèle de transformateur préexistant comme BERT ou RoBERTa, mais après le passage par ces modèles, il applique une couche de pooling pour obtenir un vecteur fixe pour chaque phrase ou texte.
+
+        attention: avantage de SBERT semble être plus le fine-tuning que le pooling. Le pooling reste une moyenne mais elle s'effectue bien plus rapidement.
 
 preprocessings codés:
 
