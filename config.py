@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch.optim as optim
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-from models import FeedforwardNeuralNetModel, LogisticRegression 
+from models import FeedforwardNeuralNetModel, LogisticRegression, FeedforwardNeuralNetModelWithDropout, CNNModel, LightGBMClassifier, AttentionModel
 
 config = {
     # General Settings
@@ -11,23 +11,23 @@ config = {
     # Data Paths
     'data_paths': {
         'processed': 'base_better_preprocessing',
-        'embedded': 'BERTweet_minute_cls',
+        'embedded': 'BERTweet_minute_batch',
         'predictions': 'base_predictions',
     },
 
-    # Preprocessing Settings (note used for now)
-    'preprocess': True,
+    # Preprocessing Settings
+    'preprocess': False,
     'preprocessing_type': 'base_better_preprocessing',
 
    
-    # Feature Extraction (not used for now)
-    'embeddings': False,
-    'embedding_type': 'BERTweet_minute_cls',
+    # Embedding Settings
+    'embeddings': True,
+    'embedding_type': 'BERTweet_minute_batch',
 
 
     # Deep Learning Model Configurations
     'dl': {
-        'model': FeedforwardNeuralNetModel,  # Replace with your actual PyTorch model class
+        'model': FeedforwardNeuralNetModel,  # Replace with the model specified
         'model_params': {
             'input_dim': 200,  # Example: input size for embeddings
             'hidden_dim': 128,  # Example: hidden layer size
@@ -44,7 +44,7 @@ config = {
 
     # Machine Learning Model Configurations
     'ml': {
-        'model' : LogisticRegression,  # Replace with your actual scikit-learn model class
+        'model' : LogisticRegression,  # Replace with the model specified
         'model_params': {
             'penalty': 'l2',
             'C': 1.0,

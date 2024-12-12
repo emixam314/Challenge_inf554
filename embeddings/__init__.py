@@ -8,8 +8,10 @@ import torch
 from .BERTweet import BERTweet_embedding
 from .BERTweet_minute import BERTweet_embedding_minute
 from .BERTweet_minute_CLS import BERTweet_embedding_minute_cls
+from .BERTweet_minute_batch_gpu import BERTweet_embedding_minute
 
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def embedd_data(embedding_type, raw_folder, processed_folder, embedded_folder):
@@ -19,7 +21,7 @@ def embedd_data(embedding_type, raw_folder, processed_folder, embedded_folder):
         basic_embedding(raw_folder, processed_folder, embedded_folder, embeddings_model)
     elif embedding_type == 'very_simple_embedding':
         very_simple_embedding(raw_folder, processed_folder, embedded_folder)
-    elif embedding_type == 'SBERT_embedding':
+    elif embedding_type == 'SBERT':
         embeddings_model = SentenceTransformer('all-MiniLM-L6-v2')
         SBERT_embedding(raw_folder, processed_folder, embedded_folder, embeddings_model)
     elif embedding_type == 'BERTweet': 
@@ -28,6 +30,8 @@ def embedd_data(embedding_type, raw_folder, processed_folder, embedded_folder):
         BERTweet_embedding_minute(raw_folder, processed_folder, embedded_folder)
     elif embedding_type == 'BERTweet_minute_cls' :
         BERTweet_embedding_minute_cls(raw_folder, processed_folder, embedded_folder)
+    elif embedding_type == 'BERTweet_minute_batch':
+        BERTweet_embedding_minute(raw_folder, processed_folder, embedded_folder)
     else:
         raise ValueError(f"Embedding method '{embedding_type}' not implemented.")
     
