@@ -16,7 +16,7 @@ config = {
     },
 
     # Preprocessing Settings (note used for now)
-    'preprocess': False,
+    'preprocess': True,
     'preprocessing_type': 'base_better_preprocessing',
 
    
