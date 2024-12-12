@@ -7,6 +7,7 @@ from .SBERT import SBERT_embedding
 import torch
 from .BERTweet import BERTweet_embedding
 from .BERTweet_minute import BERTweet_embedding_minute
+from .BERTweet_minute_CLS import BERTweet_embedding_minute_cls
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -24,6 +25,8 @@ def embedd_data(embedding_type, raw_folder, processed_folder, embedded_folder):
         BERTweet_embedding(raw_folder, processed_folder, embedded_folder)
     elif embedding_type == 'BERTweet_minute' :
         BERTweet_embedding_minute(raw_folder, processed_folder, embedded_folder)
+    elif embedding_type == 'BERTweet_minute_cls' :
+        BERTweet_embedding_minute_cls(raw_folder, processed_folder, embedded_folder)
     else:
         raise ValueError(f"Embedding method '{embedding_type}' not implemented.")
     

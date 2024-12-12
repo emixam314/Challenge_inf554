@@ -11,7 +11,7 @@ config = {
     # Data Paths
     'data_paths': {
         'processed': 'base_better_preprocessing',
-        'embedded': 'BERTweet_minute',
+        'embedded': 'BERTweet_minute_cls',
         'predictions': 'base_predictions',
     },
 
