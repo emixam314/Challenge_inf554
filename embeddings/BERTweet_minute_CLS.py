@@ -8,6 +8,8 @@ import torch
 # Initialiser la barre de progression
 tqdm.pandas()
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 def BERTweet_embedding_minute_cls(raw_folder, processed_folder, embedded_folder):
     # Charger le tokenizer et le modèle BERTweet
     tokenizer = AutoTokenizer.from_pretrained("vinai/bertweet-base")
@@ -19,17 +21,18 @@ def BERTweet_embedding_minute_cls(raw_folder, processed_folder, embedded_folder)
 
     print("Transforming tweets with BERTweet...")
     # Générer les embeddings
-    df['embeddings'] = df['Tweet'].progress_apply(lambda x: get_bertweet_embeddings(x, tokenizer, model))
+    df['embeddings'] = get_bertweet_embeddings_cls_batch(df['Tweet'], tokenizer, model)
 
     # Convertir les embeddings en colonnes
     embedding_df = pd.DataFrame(df['embeddings'].tolist(), index=df.index)
     embedding_df.columns = [f"dim_{i+1}" for i in range(embedding_df.shape[1])]
 
+    df = df.drop(columns=['Timestamp', 'Tweet', 'embeddings'])
     # Ajouter les embeddings au DataFrame
-    df = pd.concat([df, embedding_df], axis=1)
+    period_features = pd.concat([df, embedding_df], axis=1)
 
     # Préparer le DataFrame final
-    period_features = df.drop(columns=['Timestamp', 'Tweet', 'embeddings'])
+   
     final_df = period_features.groupby('ID')[period_features.iloc[:, 1:].columns].mean().reset_index()
 
     # Sauvegarder les données dans le dossier embedded_data
@@ -42,12 +45,17 @@ def BERTweet_embedding_minute_cls(raw_folder, processed_folder, embedded_folder)
     print(f"Embedded data saved at {output_path}")
 
 
-def get_bertweet_embeddings_cls(tweet, tokenizer, model):
-    # Tokenisation
-    inputs = tokenizer(tweet, max_length=128, return_tensors="pt", truncation=True, padding=True)
+def get_bertweet_embeddings_cls_batch(tweets, tokenizer, model, batch_size=32):
+    embeddings = []
+    print(f"Utilisation de l'appareil : {device}")
+    model.to(device)
+    for i in range(0, len(tweets), batch_size):
+        batch = tweets[i:i + batch_size]
+        inputs = tokenizer(batch.tolist(), max_length=128, return_tensors="pt", truncation=True, padding=True)
+        inputs = {key: value.to(device) for key, value in inputs.items()}
+        with torch.no_grad():
+            outputs = model(**inputs)
+        batch_embeddings = outputs.last_hidden_state[:, 0, :].cpu().numpy()
+        embeddings.extend(batch_embeddings)
+    return embeddings
 
-    # Passage dans le modèle
-    with torch.no_grad():
-        outputs = model(**inputs)
-    # Utilisation de la dernière couche cachée moyenne comme embedding
-    return outputs.last_hidden_state[:, 0, :].squeeze().numpy()

@@ -10,7 +10,8 @@ from .BERTweet_minute import BERTweet_embedding_minute
 from .BERTweet_minute_CLS import BERTweet_embedding_minute_cls
 
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
 def embedd_data(embedding_type, raw_folder, processed_folder, embedded_folder):
     if embedding_type == 'base_embedding':
         embeddings_model = api.load("glove-twitter-200") 

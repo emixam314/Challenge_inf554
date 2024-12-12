@@ -21,8 +21,8 @@ config = {
 
    
     # Feature Extraction (not used for now)
-    'embeddings': True,
-    'embedding_type': 'BERTweet_minute',
+    'embeddings': False,
+    'embedding_type': 'BERTweet_minute_cls',
 
 
     # Deep Learning Model Configurations
