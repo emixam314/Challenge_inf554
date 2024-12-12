@@ -11,7 +11,7 @@ config = {
     # Data Paths
     'data_paths': {
         'processed': 'base_better_preprocessing',
-        'embedded': 'BERTweet2',
+        'embedded': 'BERTweet_minute',
         'predictions': 'base_predictions',
     },
 
@@ -22,7 +22,7 @@ config = {
    
     # Feature Extraction (not used for now)
     'embeddings': True,
-    'embedding_type': 'BERTweet2',
+    'embedding_type': 'BERTweet_minute',
 
 
     # Deep Learning Model Configurations
